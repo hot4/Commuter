@@ -30,6 +30,10 @@ import com.example.commuter.commuter.Utilities.PermissionUtils;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.lapism.searchview.SearchView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MapsActivity extends AppCompatActivity
         implements
@@ -38,7 +42,8 @@ public class MapsActivity extends AppCompatActivity
 
     /* Request code for location permission request */
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-
+    @BindView(R.id.searchView)
+    SearchView searchBar;
     /* Flag indicating whether a requested permission has been denied after returning in */
     private boolean mPermissionDenied = false;
 
@@ -48,6 +53,9 @@ public class MapsActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        ButterKnife.bind(this);
+
+        searchBar.bringToFront();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
